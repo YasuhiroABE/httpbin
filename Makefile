@@ -3,7 +3,7 @@ DOCKER_CMD = podman
 
 NAME = my-httpbin
 DOCKER_IMAGE = $(NAME)
-DOCKER_IMAGE_VERSION = 20240808.1900
+DOCKER_IMAGE_VERSION = 20240808.2200
 IMAGE_NAME = $(DOCKER_IMAGE):$(DOCKER_IMAGE_VERSION)
 
 REGISTRY_SERVER = docker.io
@@ -12,7 +12,7 @@ PROD_IMAGE_NAME = $(REGISTRY_SERVER)/$(REGISTRY_LIBRARY)/$(IMAGE_NAME)
 
 .PHONY: all
 all:
-	@echo "Please specify a target: make [run|docker-build|docker-build-prod|docker-push|docker-run|docker-stop|check|clean]"
+	@echo "Please read the Makefile to check the available tasks."
 
 .PHONY: docker-build
 docker-build:
@@ -34,7 +34,14 @@ docker-push:
 docker-run:
 	$(DOCKER_CMD) run -it --rm \
 		-p 8080:8080 \
-		--env FLASGGER_URL_PREFIX="/httpbin" \
+		--name $(NAME) \
+		$(DOCKER_IMAGE):latest
+
+.PHONY: docker-run-httpbin
+docker-run-httpbin:
+	$(DOCKER_CMD) run -it --rm \
+		-p 8080:8080 \
+		--env FLASGGER_URL_PREFIX="/httpbin/" \
 		--name $(NAME) \
 		$(DOCKER_IMAGE):latest
 
