@@ -96,19 +96,19 @@ template = {
         "title": "httpbin.org",
         "description": (
             "A simple HTTP Request & Response Service."
-            "<br/> <br/> <b>Run locally: </b> <code>$ docker run -p 80:80 kennethreitz/httpbin</code>"
+            "<br/> <br/> <b>Run locally: </b> <code>$ podman run -p 80:8080 docker.io/yasuhiroabe/httpbin</code>"
         ),
         "contact": {
-            "responsibleOrganization": "Kenneth Reitz",
-            "responsibleDeveloper": "Kenneth Reitz",
-            "email": "me@kennethreitz.org",
-            "url": "https://kennethreitz.org",
+            "responsibleOrganization": "Yasuhiro ABE",
+            "responsibleDeveloper": "Yasuhiro ABE",
+            "email": "yasu@yasundial.org",
+            "url": "https://www.yasundial.org/",
         },
         # "termsOfService": "http://me.com/terms",
         "version": version,
     },
     "host": "httpbin.org",  # overrides localhost:5000
-    "basePath": "/",  # base bash for blueprint registration
+    "basePath": os.environ.get("FLASGGER_URL_PREFIX", "/"),  # base bash for blueprint registration
     "schemes": ["https"],
     "protocol": "https",
     "tags": [
