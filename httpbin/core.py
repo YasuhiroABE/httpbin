@@ -96,7 +96,7 @@ template = {
         "title": "httpbin.org",
         "description": (
             "A simple HTTP Request & Response Service."
-            "<br/> <br/> <b>Run locally: </b> <code>$ podman run -p 80:8080 docker.io/yasuhiroabe/httpbin</code>"
+            "<br/> <br/> <b>Run locally: </b> <code>$ podman run -p 8080:8080 docker.io/yasuhiroabe/httpbin</code>"
         ),
         "contact": {
             "responsibleOrganization": "Yasuhiro ABE",
