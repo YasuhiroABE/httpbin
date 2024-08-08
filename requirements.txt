@@ -1,13 +1,12 @@
 
-gunicorn
-decorator
-brotlipy
-gevent
-Flask
-meinheld
-werkzeug
-six
-flasgger
-pyyaml
+gunicorn==22.0.0
+decorator==5.1.1
+brotlipy==0.7.0
+gevent==24.2.1
+Flask==3.0.3
+werkzeug==3.0.3
+six==1.16.0
+flasgger==0.9.7.1
+pyyaml==6.0.2
 
-rope
+rope==1.13.0
