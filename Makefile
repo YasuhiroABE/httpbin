@@ -3,7 +3,7 @@ DOCKER_CMD = podman
 
 NAME = my-httpbin
 DOCKER_IMAGE = $(NAME)
-DOCKER_IMAGE_VERSION = 20240808.1645
+DOCKER_IMAGE_VERSION = 20240808.1900
 IMAGE_NAME = $(DOCKER_IMAGE):$(DOCKER_IMAGE_VERSION)
 
 REGISTRY_SERVER = docker.io
@@ -34,8 +34,9 @@ docker-push:
 docker-run:
 	$(DOCKER_CMD) run -it --rm \
 		-p 8080:8080 \
+		--env FLASGGER_URL_PREFIX="/httpbin" \
 		--name $(NAME) \
-                $(DOCKER_IMAGE):latest
+		$(DOCKER_IMAGE):latest
 
 .PHONY: docker-stop
 docker-stop:
@@ -48,4 +49,12 @@ clean:
 .PHONY: docker-exec
 docker-exec:
 	$(DOCKER_CMD) exec -it $(NAME) bash
+
+.PHONY: firefox
+firefox:
+	browse http://localhost:8080/
+
+.PHONY: firefox-httpbin
+firefox-httpbin:
+	browse http://localhost:8080/httpbin/
 
