@@ -20,5 +20,7 @@ RUN . venv/httpbin/bin/activate && pip3 install --no-cache-dir /httpbin
 
 EXPOSE 8080
 
+ENV FLASGGER_URL_PREFIX /
+
 RUN chmod +x run.sh
 CMD ["./run.sh"]
