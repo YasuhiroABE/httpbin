@@ -1,22 +1,24 @@
-FROM ubuntu:18.04
+FROM python:3.12-alpine
 
 LABEL name="httpbin"
 LABEL version="0.9.2"
 LABEL description="A simple HTTP service."
-LABEL org.kennethreitz.vendor="Kenneth Reitz"
+LABEL org.opencontainers.image.authors="yasu@yasundial.org"
 
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
 
-RUN apt update -y && apt install python3-pip git -y && pip3 install --no-cache-dir pipenv
+RUN apk --no-cache add tzdata bash ca-certificates git make gcc libc-dev linux-headers build-base patch
 
-ADD Pipfile Pipfile.lock /httpbin/
 WORKDIR /httpbin
-RUN /bin/bash -c "pip3 install --no-cache-dir -r <(pipenv lock -r)"
+RUN python3 -m venv venv/httpbin
+ADD requirements.txt /httpbin/
+RUN . venv/httpbin/bin/activate && pip3 install --no-cache-dir -r requirements.txt
 
 ADD . /httpbin
-RUN pip3 install --no-cache-dir /httpbin
+RUN . venv/httpbin/bin/activate && pip3 install --no-cache-dir /httpbin
 
-EXPOSE 80
+EXPOSE 8080
 
-CMD ["gunicorn", "-b", "0.0.0.0:80", "httpbin:app", "-k", "gevent"]
+RUN chmod +x run.sh
+CMD ["./run.sh"]
