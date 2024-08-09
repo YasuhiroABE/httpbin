@@ -4,10 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Source+Code+Pro:300,600|Titillium+Web:400,600,700"
-          rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{url_for('flasgger.static', filename='swagger-ui.css')}}">
     <link rel="icon" type="image/png" href="{{url_for('static', filename='favicon.ico')}}" sizes="64x64 32x32 16x16" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Ubuntu+Sans+Mono:ital,wght@0,500;1,500&display=swap');
+    </style>
     <style>
         html {
             box-sizing: border-box;
@@ -25,6 +26,9 @@
             margin: 0;
             background: #fafafa;
         }
+	.swagger-ui textarea.curl, .swagger-ui .opblock-body pre.microlight {
+	    font-weight: 400;
+	}
     </style>
 </head>
 
@@ -115,7 +119,6 @@
                         <div class="loading-container">
                             <div class="loading"></div>
                         </div>
-
                     </section>
                 </div>
             </div>
@@ -209,7 +212,7 @@
         })
     })
 }
-    </script> {% if tracking_enabled %} {% include 'trackingscripts.html' %} {% endif %} {% include 'footer.html' %}
+    </script> {% include 'footer.html' %}
 </body>
 
 </html>
