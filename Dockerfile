@@ -34,7 +34,13 @@ RUN . venv/httpbin/bin/activate && pip3 install --no-cache-dir /httpbin
 
 EXPOSE 8080
 
+## FLASGGER_URL_PREFIX is expected to end with the "/" character.
 ENV FLASGGER_URL_PREFIX /
+ENV HTTPBIND_AUTHOR_NAME YasuhiroABE
+ENV HTTPBIND_AUTHOR_EMAIL yasu@yasundial.org
+ENV HTTPBIND_AUTHOR_URL https://www.yadiary.net/
+ENV HTTPBIND_VERSION 0.9.2
+ENV HTTPBIND_TITLE httpbin.org Compatible API Server
 
 RUN chmod +x run.sh
 CMD ["./run.sh"]
