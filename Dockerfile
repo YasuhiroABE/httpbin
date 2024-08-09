@@ -43,4 +43,6 @@ ENV HTTPBIND_VERSION 0.9.2
 ENV HTTPBIND_TITLE httpbin.org Compatible API Server
 
 RUN chmod +x run.sh
+RUN adduser -D httpbin
+USER httpbin
 CMD ["./run.sh"]
