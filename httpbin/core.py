@@ -89,23 +89,25 @@ app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 app.add_template_global("HTTPBIN_TRACKING" in os.environ, name="tracking_enabled")
 
 app.config["SWAGGER"] = {"title": "httpbin.org", "uiversion": 3}
+app.config["url_prefix"] = os.environ.get("FLASGGER_URL_PREFIX", "/")[:-1]
 
 template = {
+    "url_prefix": os.environ.get("FLASGGER_URL_PREFIX", "/"),
     "swagger": "2.0",
     "info": {
-        "title": "httpbin.org",
+        "title": os.environ.get("HTTPBIND_TITLE", "httpbin.org Compatible API Server"),
         "description": (
-            "A simple HTTP Request & Response Service."
-            "<br/> <br/> <b>Run locally: </b> <code>$ podman run -p 8080:8080 docker.io/yasuhiroabe/httpbin</code>"
+            "A simple HTTP Request & Response Service. The original version is developed by Kenneth Reitz"
+            "<br/> <br/> <b>Run locally: </b> <code>$ podman run -p 8080:8080 -it --rm docker.io/yasuhiroabe/my-httpbin</code>"
         ),
         "contact": {
-            "responsibleOrganization": "Yasuhiro ABE",
-            "responsibleDeveloper": "Yasuhiro ABE",
-            "email": "yasu@yasundial.org",
-            "url": "https://www.yasundial.org/",
+            "responsibleOrganization": "Kenneth Reitz",
+            "responsibleDeveloper": os.environ.get("Yasuhiro ABE", "Kenneth Reitz"),
+            "email": os.environ.get("HTTPBIND_AUTHOR_EMAIL", "me@kennethreitz.org"),
+            "url": os.environ.get("HTTPBIND_AUTHOR_URL", "http://kennethreitz.org/"),
         },
         # "termsOfService": "http://me.com/terms",
-        "version": version,
+        "version": os.environ.get("HTTPBIND_VERSION", version),
     },
     "host": "httpbin.org",  # overrides localhost:5000
     "basePath": os.environ.get("FLASGGER_URL_PREFIX", "/"),  # base bash for blueprint registration
