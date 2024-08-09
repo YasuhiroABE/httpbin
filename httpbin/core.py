@@ -88,7 +88,7 @@ app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 
 app.add_template_global("HTTPBIN_TRACKING" in os.environ, name="tracking_enabled")
 
-app.config["SWAGGER"] = {"title": "httpbin.org", "uiversion": 3}
+app.config["SWAGGER"] = {"title": os.environ.get("HTTPBIND_TITLE", "httpbin.org"), "uiversion": 3}
 app.config["url_prefix"] = os.environ.get("FLASGGER_URL_PREFIX", "/")[:-1]
 
 template = {
