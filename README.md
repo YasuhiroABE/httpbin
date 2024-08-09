@@ -29,6 +29,10 @@ Access to the **http://localhost:8080/httpbin/**
 
 ## CahgeLog
 
+### TBD
+
+* Added the httpbin user to run the application instead of the root user.
+
 ### 20240809.1330
 
 * Changed the web-font setting and the font-weight from 600 to 400.
