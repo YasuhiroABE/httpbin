@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-httpbin
+  labels:
+    app: my-httpbin
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-httpbin
+  template:
+    metadata:
+      labels:
+        app: my-httpbin
+    spec:
+      containers:
+      - name: my-httpbin
+        image: docker.io/yasuhiroabe/my-httpbin:latest
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: FLASGGER_URL_PREFIX
+          value: /httpbin/

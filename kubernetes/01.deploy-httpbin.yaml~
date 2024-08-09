@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-httpbin
+  labels:
+    app: my-httpbin
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-httpbin
+  template:
+    metadata:
+      labels:
+        app: my-httpbin
+    spec:
+      containers:
+      - name: nginx
+        image: inovtst9.u-aizu.ac.jp/yasu-abe/my-httpbin:20240809.1330
+        imagePullPolicy: "Always"
+        ports:
+        - containerPort: 8080
+        env:
+        - name: FLASGGER_URL_PREFIX
+          value: /httpbin/
+        - name: HTTPBIND_AUTHOR_URL 
+          value: https://web-int.u-aizu.ac.jp/~yasu-abe/
+        - name: HTTPBIND_AUTHOR_EMAIL 
+          value: yasu-abe@u-aizu.ac.jp
