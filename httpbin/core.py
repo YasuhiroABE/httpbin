@@ -82,7 +82,7 @@ BaseResponse.autocorrect_location_header = False
 # Find the correct template folder when running from a different location
 tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "templates")
 
-app = Flask(__name__, template_folder=tmpl_dir, static_url_path=(os.environ.get("FLASGGER_URL_PREFIX") + "static"))
+app = Flask(__name__, template_folder=tmpl_dir, static_url_path=(os.environ.get("FLASGGER_URL_PREFIX","/") + "static"))
 app.debug = bool(os.environ.get("DEBUG"))
 app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 
