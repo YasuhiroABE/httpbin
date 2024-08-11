@@ -27,11 +27,37 @@ Access to the **http://localhost:8080/httpbin/**
 * HTTPBIND_VERSION (default: 0.9.2)
 * HTTPBIND_TITLE (default: httpbin.org Compatible API Server)
 
+## Building Container
+
+The default container engine is "podman".
+If you would like to use the docker command, please edit the DOCKER_CMD variable of Makefile.
+
+### To test the container
+
+```sh
+$ make docker-build
+$ make docker-run
+```
+
+### To release the production Container
+
+First, edit the REGISTRY_LIBRARY variable of Makefile to your environmnet.
+
+```sh
+$ make docker-build-prod
+$ make docker-tag
+$ podman login docker.io
+$ make docker-push
+$ podman logout docker.io
+```
+
 ## CahgeLog
 
-### TBD
+### 20240811.2245
 
-* Added the httpbin user to run the application instead of the root user.
+* Added YAML files using for the Kubernetes deployment.
+* Added the non-root "httpbin" user to run the application.
+* Fixed the digest-auth function based on the psf version of httpbin, https://github.com/psf/httpbin
 
 ### 20240809.1330
 
