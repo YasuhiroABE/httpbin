@@ -30,7 +30,7 @@ Access to the **http://localhost:8080/httpbin/**
 ## Building Container
 
 The default container engine is "podman".
-If you would like to use the docker command, please edit the DOCKER_CMD variable of Makefile.
+If you would like to use the docker command, please override the DOCKER_CMD environment variable or edit the Makefile directly.
 
 ### To test the container
 
@@ -41,7 +41,7 @@ $ make docker-run
 
 ### To release the production Container
 
-First, edit the REGISTRY_LIBRARY variable of Makefile to your environmnet.
+First, change the REGISTRY_LIBRARY variable of Makefile to your environmnet.
 
 ```sh
 $ make docker-build-prod
@@ -52,6 +52,10 @@ $ podman logout docker.io
 ```
 
 ## CahgeLog
+
+### TBD
+
+* Revised the README.md file.
 
 ### 20240811.2245
 
